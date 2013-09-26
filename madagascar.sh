@@ -11,7 +11,7 @@ jsonBase="/home/qatest/webroot-study/access-study"
 
 kinit -kt ${keytab} study/dev@HADOOP.HZ.NETEASE.COM
 kinit -R
-$HADOOP_HOME/bin/hadoop fs -text /datastream/study/nginx/$(date -d yesterday +%Y_%m_%d)/* > nginx.log
+$HADOOP_HOME/bin/hadoop fs -text /datastream/study/nginx/$(date -d yesterday +%Y-%m-%d)/* > nginx.log
 
 ## 1 process
 python ${baseDir}/logProcessor.py ${src1} ${dest1}
@@ -27,7 +27,7 @@ python ${baseDir}/renderer.py ${dest1}
 ## 4 log rotate
 if [ -f ${cpDest} ]
 then
-  cp ${cpDest} ${jsonBase}/access-study-$(date -d ' 2 days ago' +%Y_%m_%d).json
+  cp ${cpDest} ${jsonBase}/access-study-$(date -d ' 2 days ago' +%Y-%m-%d).json
 fi
 
 cp ${dest1} ${cpDest}
